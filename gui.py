@@ -137,9 +137,6 @@ enable_button.grid(row=0, column=0, padx=5)
 disable_button = ttk.Button(button_frame, text="Disable", command=disable_startup)
 disable_button.grid(row=0, column=1, padx=5)
 
-delete_button = ttk.Button(button_frame, text="Delete", command=delete_startup)
-delete_button.grid(row=0, column=2, padx=5)
-
 # Create the 'Backup/Restore' tab
 backup_frame = ttk.Frame(notebook)
 notebook.add(backup_frame, text="Backup/Restore")
