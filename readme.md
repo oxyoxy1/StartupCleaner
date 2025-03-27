@@ -27,7 +27,7 @@ A simple Python application that allows users to manage startup items on their s
 3. Run the application:
 
     ```
-    main app.py
+    main.py
     ```
     
 ## File Arrangement
