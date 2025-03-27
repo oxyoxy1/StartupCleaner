@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox, filedialog, scrolledtext
 import os
-from registry_utils import get_registry_startup, delete_registry_item, enable_registry_item, disable_registry_item
+from registry_utils import get_full_startup_items, delete_registry_item, enable_registry_item, disable_registry_item
 from startup_folder_utils import get_startup_folder, delete_startup_file, enable_startup_file, disable_startup_file
 from backup_utils import backup_startup_items, restore_startup_items
 from settings_manager import load_settings, save_settings
