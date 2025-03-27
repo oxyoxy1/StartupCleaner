@@ -37,18 +37,6 @@ def get_startup_folder():
     # Combine the active items (from the folder) and the disabled items (from the registry)
     return active_items + disabled_items
 
-def delete_startup_file(file_name):
-    """Delete a file from the startup folder."""
-    try:
-        startup_folder = os.path.join(os.getenv("APPDATA"), "Microsoft\\Windows\\Start Menu\\Programs\\Startup")
-        file_path = os.path.join(startup_folder, file_name)
-        if os.path.exists(file_path):
-            os.remove(file_path)
-            return True
-    except Exception as e:
-        print(f"Error deleting startup file: {e}")
-    return False
-
 def enable_startup_file(file_name, file_path):
     """Add a file to the startup folder."""
     try:

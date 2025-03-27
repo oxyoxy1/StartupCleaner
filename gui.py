@@ -3,8 +3,8 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox, filedialog, scrolledtext
 import os
-from registry_utils import get_full_startup_items, delete_registry_item, enable_registry_item, disable_registry_item
-from startup_folder_utils import get_startup_folder, delete_startup_file, enable_startup_file, disable_startup_file
+from registry_utils import get_full_startup_items, enable_registry_item, disable_registry_item
+from startup_folder_utils import get_startup_folder, enable_startup_file, disable_startup_file
 from backup_utils import backup_startup_items, restore_startup_items
 from settings_manager import load_settings, save_settings
 from logger import log_action
@@ -32,7 +32,7 @@ def toggle_logs():
 
 # Function to update startup list with status (Enabled/Disabled)
 def update_startup_list():
-    registry_items = get_registry_startup()
+    registry_items = get_full_startup_items()
     folder_items = get_startup_folder()
 
     all_items = registry_items + folder_items
@@ -54,7 +54,7 @@ def update_startup_list():
 # Function to check if a startup item is enabled
 def is_item_enabled(item_name):
     # Check if it's in the registry or the startup folder
-    registry_items = get_registry_startup()
+    registry_items = get_full_startup_items()
     folder_items = get_startup_folder()
     
     # Look for the item in both places and check its status
@@ -71,7 +71,7 @@ def enable_startup():
     selected_item = startup_listbox.curselection()
     if selected_item:
         item_name = startup_listbox.get(selected_item).split(" (")[0]  # Get item name without the status
-        if item_name in [x[0] for x in get_registry_startup()]:
+        if item_name in [x[0] for x in get_full_startup_items()]:
             enable_registry_item(item_name, item_name)
         else:
             enable_startup_file(item_name, os.path.join(os.getenv("APPDATA"), "Microsoft\\Windows\\Start Menu\\Programs\\Startup", item_name))
@@ -83,7 +83,7 @@ def disable_startup():
     selected_item = startup_listbox.curselection()
     if selected_item:
         item_name = startup_listbox.get(selected_item).split(" (")[0]  # Get item name without the status
-        if item_name in [x[0] for x in get_registry_startup()]:
+        if item_name in [x[0] for x in get_full_startup_items()]:
             disable_registry_item(item_name)  # This keeps the registry entry but disables the item
         else:
             # Now call disable_startup_file to move the file to a "Disabled" folder instead of deleting it
@@ -91,21 +91,9 @@ def disable_startup():
         log_action(f"Disabled {item_name}")
         update_startup_list()  # Update the list to reflect changes
 
-# Function to delete a startup item
-def delete_startup():
-    selected_item = startup_listbox.curselection()
-    if selected_item:
-        item_name = startup_listbox.get(selected_item).split(" (")[0]  # Get item name without the status
-        if item_name in [x[0] for x in get_registry_startup()]:
-            delete_registry_item(item_name)
-        else:
-            delete_startup_file(item_name)
-        log_action(f"Deleted {item_name}")
-        update_startup_list()
-
 # Function to backup startup items
 def backup_startup():
-    items = get_registry_startup() + get_startup_folder()
+    items = get_full_startup_items() + get_startup_folder()
     backup_startup_items(items)
     log_action("Backup created.")
 
