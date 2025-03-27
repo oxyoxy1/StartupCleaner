@@ -9,16 +9,6 @@ A simple Python application that allows users to manage startup items on their s
 - Export the list of startup items to a CSV file.
 - All items are displayed with their name, path, and status (enabled/disabled).
 
-## Requirements
-
-Make sure to install the required dependencies before running the application. You can install them using:
-
-pip install -r requirements.txt
-
-markdown
-Copy
-Edit
-
 ### Required Libraries:
 - `tkinter` for GUI creation
 - `psutil` for managing and retrieving system startup items.
@@ -27,6 +17,7 @@ Edit
 ## Installation
 
 1. Clone the repository or download the files.
+   
 2. Install dependencies:
 
     ```
@@ -36,7 +27,7 @@ Edit
 3. Run the application:
 
     ```
-    python app.py  # Replace app.py with the name of your script if different
+    main app.py
     ```
 
 ## Usage
