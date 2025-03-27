@@ -108,74 +108,74 @@ def restore_startup():
 def clear_logs():
     logs_text.delete(1.0, tk.END)
 
-# Set up window
-root = tk.Tk()
-root.title("Startup Cleaner - oxy edition")
+def main_window():
+    # Set up window
+    root = tk.Tk()
+    root.title("Startup Cleaner - oxy edition")
 
-# Set initial theme
-set_theme()
+    # Set initial theme
+    set_theme()
 
-# Create the notebook (tabs)
-notebook = ttk.Notebook(root)
-notebook.pack(padx=10, pady=10, fill='both', expand=True)
+    # Create the notebook (tabs)
+    notebook = ttk.Notebook(root)
+    notebook.pack(padx=10, pady=10, fill='both', expand=True)
 
-# Create the 'Startup Items' tab
-startup_frame = ttk.Frame(notebook)
-notebook.add(startup_frame, text="Startup Items")
+    # Create the 'Startup Items' tab
+    startup_frame = ttk.Frame(notebook)
+    notebook.add(startup_frame, text="Startup Items")
 
-# Listbox for startup items
-startup_listbox = tk.Listbox(startup_frame, height=10, width=50)
-startup_listbox.pack(padx=10, pady=10)
+    # Listbox for startup items
+    startup_listbox = tk.Listbox(startup_frame, height=10, width=50)
+    startup_listbox.pack(padx=10, pady=10)
 
-# Buttons for enabling/disabling/deleting startup items
-button_frame = ttk.Frame(startup_frame)
-button_frame.pack(padx=10, pady=10)
+    # Buttons for enabling/disabling/deleting startup items
+    button_frame = ttk.Frame(startup_frame)
+    button_frame.pack(padx=10, pady=10)
 
-enable_button = ttk.Button(button_frame, text="Enable", command=enable_startup)
-enable_button.grid(row=0, column=0, padx=5)
+    enable_button = ttk.Button(button_frame, text="Enable", command=enable_startup)
+    enable_button.grid(row=0, column=0, padx=5)
 
-disable_button = ttk.Button(button_frame, text="Disable", command=disable_startup)
-disable_button.grid(row=0, column=1, padx=5)
+    disable_button = ttk.Button(button_frame, text="Disable", command=disable_startup)
+    disable_button.grid(row=0, column=1, padx=5)
 
-# Create the 'Backup/Restore' tab
-backup_frame = ttk.Frame(notebook)
-notebook.add(backup_frame, text="Backup/Restore")
+    # Create the 'Backup/Restore' tab
+    backup_frame = ttk.Frame(notebook)
+    notebook.add(backup_frame, text="Backup/Restore")
 
-# Buttons for backup and restore
-backup_button = ttk.Button(backup_frame, text="Backup", command=backup_startup)
-backup_button.pack(padx=10, pady=5)
+    # Buttons for backup and restore
+    backup_button = ttk.Button(backup_frame, text="Backup", command=backup_startup)
+    backup_button.pack(padx=10, pady=5)
 
-restore_button = ttk.Button(backup_frame, text="Restore", command=restore_startup)
-restore_button.pack(padx=10, pady=5)
+    restore_button = ttk.Button(backup_frame, text="Restore", command=restore_startup)
+    restore_button.pack(padx=10, pady=5)
 
-# Create the 'Settings' tab
-settings_frame = ttk.Frame(notebook)
-notebook.add(settings_frame, text="Settings")
+    # Create the 'Settings' tab
+    settings_frame = ttk.Frame(notebook)
+    notebook.add(settings_frame, text="Settings")
 
-# Dark mode toggle
-dark_mode_var = tk.BooleanVar(value=settings["dark_mode"])
-dark_mode_checkbox = ttk.Checkbutton(settings_frame, text="Dark Mode", variable=dark_mode_var, command=toggle_dark_mode)
-dark_mode_checkbox.pack(padx=10, pady=5)
+    # Dark mode toggle
+    dark_mode_var = tk.BooleanVar(value=settings["dark_mode"])
+    dark_mode_checkbox = ttk.Checkbutton(settings_frame, text="Dark Mode", variable=dark_mode_var, command=toggle_dark_mode)
+    dark_mode_checkbox.pack(padx=10, pady=5)
 
-# Log toggle
-logs_var = tk.BooleanVar(value=settings["logs_enabled"])
-logs_checkbox = ttk.Checkbutton(settings_frame, text="Enable Logs", variable=logs_var, command=toggle_logs)
-logs_checkbox.pack(padx=10, pady=5)
+    # Log toggle
+    logs_var = tk.BooleanVar(value=settings["logs_enabled"])
+    logs_checkbox = ttk.Checkbutton(settings_frame, text="Enable Logs", variable=logs_var, command=toggle_logs)
+    logs_checkbox.pack(padx=10, pady=5)
 
-# Create the 'Logs' tab
-logs_frame = ttk.Frame(notebook)
-notebook.add(logs_frame, text="Logs")
+    # Create the 'Logs' tab
+    logs_frame = ttk.Frame(notebook)
+    notebook.add(logs_frame, text="Logs")
 
-# Scrollable logs text area
-logs_text = scrolledtext.ScrolledText(logs_frame, width=60, height=20, wrap=tk.WORD, state=tk.DISABLED)
-logs_text.pack(padx=10, pady=10)
+    # Scrollable logs text area
+    logs_text = scrolledtext.ScrolledText(logs_frame, width=60, height=20, wrap=tk.WORD, state=tk.DISABLED)
+    logs_text.pack(padx=10, pady=10)
 
-# Clear logs button
-clear_logs_button = ttk.Button(logs_frame, text="Clear Logs", command=clear_logs)
-clear_logs_button.pack(padx=10, pady=5)
+    # Clear logs button
+    clear_logs_button = ttk.Button(logs_frame, text="Clear Logs", command=clear_logs)
+    clear_logs_button.pack(padx=10, pady=5)
 
-# Call the update_startup_list function after window initialization
-update_startup_list()
+    # Call the update_startup_list function after window initialization
+    update_startup_list()
 
-# Main loop to handle events
-root.mainloop()
+    return root  # Return the root window so it can be accessed from main.py
