@@ -29,6 +29,7 @@ A simple Python application that allows users to manage startup items on their s
     ```
     main app.py
     ```
+![Tree](screenshots/tree.PNG)
 
 ## Usage
 
