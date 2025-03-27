@@ -1,4 +1,4 @@
-# Startup Manager
+# Startup Cleaner
 
 A simple Python application that allows users to manage startup items on their system. You can view, enable/disable, and export the list of startup items. The app provides an easy-to-use interface with a list of current startup entries, their paths, and statuses.
 
